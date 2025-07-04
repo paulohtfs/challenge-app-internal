@@ -1,0 +1,31 @@
+services:
+  api:
+    image: api-internal
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/api
+      - bundle_data:/bundle/vendor
+    command: tail -f /dev/null
+  database:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pg_data:/var/lib/postgresql/data 
+  cache:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - cache_data:/data
+
+volumes:
+  pg_data:
+  cache_data:
+  bundle_data:

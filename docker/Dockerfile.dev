@@ -1,0 +1,14 @@
+ARG RUBY_VERSION=3.4
+
+FROM ruby:$RUBY_VERSION-alpine
+
+ENV API_PATH /api
+ENV BUNDLE_PATH /bundle/vendor
+
+WORKDIR $API_PATH
+
+RUN apk add --update --no-cache \
+    build-base \
+	git \
+    postgresql-dev \
+    yaml-dev
