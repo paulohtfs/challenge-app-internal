@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Challenge Api Internal",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
