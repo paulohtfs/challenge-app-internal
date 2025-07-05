@@ -41,7 +41,8 @@ gem "rack-cors"
 
 # Use devise for user auth management
 gem "devise", "~> 4.9"
-gem 'devise-jwt', "~> 0.10"
+gem "devise-jwt", "~> 0.10"
+gem "jsonapi-serializer", "~> 2.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
