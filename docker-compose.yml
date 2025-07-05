@@ -10,6 +10,16 @@ services:
       - ./:/api
       - bundle_data:/bundle/vendor
     command: tail -f /dev/null
+  client:
+    image: client-internal
+    build:
+      context: ./
+      dockerfile: ./client/Dockerfile.dev
+    volumes:
+      - ./client:/client
+    ports:
+      - "5173:5173"
+    command: tail -f /dev/null
   database:
     image: postgres:16-alpine
     restart: always
