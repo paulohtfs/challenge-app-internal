@@ -1,9 +1,17 @@
 # frozen_string_literal: true
 
-class Users::RegistrationsController < Devise::RegistrationsController
+class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
+  def create
+    V1::Users::CreateService.call(registration_params[:user])
+  end
+
   private
+
+  def registration_params
+    params.permit(user: [:name, :email, :password, :role])
+  end
 
   def respond_with(resource, _opts = {})
     if resource.persisted?
