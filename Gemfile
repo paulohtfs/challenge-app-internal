@@ -39,6 +39,8 @@ gem "rack-cors"
 
 #gem "doorkeeper", "~> 4.8"
 
+#gem "pundit", "~> 2.5"
+
 # Use devise for user auth management
 gem "devise", "~> 4.9"
 gem "devise-jwt", "~> 0.10"
@@ -53,7 +55,10 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "faker", "~> 3.5"
 end
 
-
-gem "pundit", "~> 2.5"
+group :test do
+  gem "rspec-rails", "~> 8.0"
+end
