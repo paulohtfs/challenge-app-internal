@@ -117,6 +117,8 @@ GEM
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
+    factory_bot (6.5.4)
+      activesupport (>= 6.1.0)
     faker (3.5.2)
       i18n (>= 1.8.11, < 2)
     fugit (1.11.1)
@@ -378,6 +380,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   devise-jwt (~> 0.10)
+  factory_bot (~> 6.5)
   faker (~> 3.5)
   has_scope (~> 0.8.2)
   jbuilder

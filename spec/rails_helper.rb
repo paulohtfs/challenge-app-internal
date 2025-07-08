@@ -30,6 +30,8 @@ require 'rspec/rails'
 # recreate the test database by loading the schema.
 # If you are not using ActiveRecord, you can remove these lines.
 require 'faker'
+require 'factory_bot'
+require 'devise'
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -71,4 +73,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include FactoryBot::Syntax::Methods
 end
