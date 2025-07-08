@@ -12,6 +12,14 @@ class User < ApplicationRecord
 
   validates :name, :email, :role, presence: true
   validates :email, format: URI::MailTo::EMAIL_REGEXP
+
+  scope :by_name, -> name { where('name ilike ?', sanitize_sql_like(name) + '%') }
+  scope :by_role, -> role { where(role: "User::#{role.camelize}") }
+  scope :by_email, -> email { where('email ilike ?', sanitize_sql_like(email) + '%') }
+
+  scope :order_name, -> order { order(name: order) }
+  scope :order_role, -> order { order(role: order) }
+  scope :order_email, -> order { order(email: order) }
   
   def admin?
     role == "User::Admin"

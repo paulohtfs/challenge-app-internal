@@ -41,6 +41,8 @@ gem "rack-cors"
 
 #gem "pundit", "~> 2.5"
 
+gem "has_scope", "~> 0.8.2"
+
 # Use devise for user auth management
 gem "devise", "~> 4.9"
 gem "devise-jwt", "~> 0.10"

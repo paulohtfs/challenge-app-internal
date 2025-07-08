@@ -124,6 +124,9 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    has_scope (0.8.2)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     io-console (0.8.0)
@@ -376,6 +379,7 @@ DEPENDENCIES
   devise (~> 4.9)
   devise-jwt (~> 0.10)
   faker (~> 3.5)
+  has_scope (~> 0.8.2)
   jbuilder
   jsonapi-serializer (~> 2.2)
   kamal

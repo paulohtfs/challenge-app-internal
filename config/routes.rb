@@ -6,9 +6,13 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  namespace :api do
+  namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :home, only: [:index], defaults: {format: :json}
+      resources :home, only: [:index]
+      resources :users, only: [:index]
+
+      post '/users/:id/activate', to: 'users#activate'
+      post '/users/:id/inactivate', to: 'users#inactivate'
 
       post '/webhooks', to: 'webhooks#create'
     end
