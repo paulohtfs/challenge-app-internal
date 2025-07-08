@@ -5,7 +5,11 @@ meta {
 }
 
 get {
-  url: http://localhost:3000/users
+  url: http://localhost:3000/api/v1/users?by_whatever=webhook
   body: none
   auth: inherit
+}
+
+params:query {
+  by_whatever: webhook
 }
