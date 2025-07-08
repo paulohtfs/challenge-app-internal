@@ -1,5 +1,6 @@
 class V1::Users::CreateService < BaseService
   def initialize(params)
+    puts params
     @params = params
     @name = params[:name]
     @email = params[:email]

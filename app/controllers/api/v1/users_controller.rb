@@ -14,6 +14,10 @@ class Api::V1::UsersController < ApplicationController
     @users = apply_scopes(User).all
   end
 
+  def create
+    @user = V1::Users::CreateService.call(params[:user])
+  end
+
   def activate
     authorize :users, :activate?
 
