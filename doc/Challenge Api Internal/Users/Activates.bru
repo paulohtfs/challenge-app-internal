@@ -1,0 +1,15 @@
+meta {
+  name: Activates
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:3000/users/:id/inactivates
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 
+}
