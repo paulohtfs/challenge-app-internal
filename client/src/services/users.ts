@@ -7,14 +7,20 @@ export class UsersService extends BaseService {
         return this.response;
     }
 
-    public async activate(id) {
+    public async activate(id: string) {
         await this.put(`users/${id}/activate`);
 
         return this.response;
     }
 
-    public async inactivate(id) {
+    public async inactivate(id: string) {
         await this.put(`users/${id}/inactivate`);
+
+        return this.response;
+    }
+
+    public async remove(id: string) {
+        await this.delete(`users/${id}`);
 
         return this.response;
     }

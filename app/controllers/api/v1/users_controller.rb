@@ -8,6 +8,8 @@ class Api::V1::UsersController < ApplicationController
   has_scope :order_role
   has_scope :order_email
 
+  rescue_from Pundit::NotAuthorizedError, with: :deny_access
+
   def index
     @users = apply_scopes(User).all
   end
@@ -16,15 +18,23 @@ class Api::V1::UsersController < ApplicationController
     authorize :users, :activate?
 
     V1::Users::ActivateService.call(params)
-  rescue Pundit::NotAuthorizedError => error
-    render json: { message: error.message, status: 401 }
   end
 
   def inactivate
     authorize :users, :inactivate?
 
     V1::Users::InactivateService.call(params)
-  rescue Pundit::NotAuthorizedError => error
+  end
+
+  def destroy
+    authorize :users, :destroy?
+
+    V1::Users::DestroyService.call(params)
+  end
+
+  private
+
+  def deny_access(error)
     render json: { message: error.message, status: 401 }
   end
 end

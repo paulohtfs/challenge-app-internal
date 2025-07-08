@@ -35,4 +35,9 @@ export class BaseService {
         await axios.put(`${this.baseUrl}/${path}`, data, this.options)
             .then(response => { this.response = response.data });
     }
+
+    protected async delete(path: string, data: object) {
+        await axios.delete(`${this.baseUrl}/${path}`, this.options)
+            .then(response => { this.response = response.data });
+    }
 }

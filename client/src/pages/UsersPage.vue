@@ -13,6 +13,11 @@
                     {{ active(value) }}
                 </VaButton>
             </template>
+            <template #cell(remove)="{ rowData }">
+                <VaButton size="small" color="danger" @click="remove(rowData)">
+                    Delete
+                </VaButton>
+            </template>
         </VaDataTable>
     </div>
 </template>
@@ -29,7 +34,8 @@ export default {
                 { key: "name", sortable: true, sortingOptions: ["desc", "asc"] },
                 { key: "email", sortable: true, sortingOptions: ["desc", "asc"] },
                 { key: "role", name: "role", sortable: true, sortingOptions: ["desc", "asc"] },
-                { key: "active", name: "actions", sortable: false }
+                { key: "active", name: "actions", sortable: false },
+                { key: "remove", name: "remove", sortable: false }
             ],
         };
     },
@@ -74,6 +80,9 @@ export default {
 
             this.setUsers();
         },
+        async remove(user) {
+            await Servers.users.remove(user['id']);
+        }
     },
 };
 </script>

@@ -12,4 +12,8 @@ class UsersPolicy
   def inactivate?
     user.admin?
   end
+
+  def destroy?
+    user.admin?
+  end
 end
