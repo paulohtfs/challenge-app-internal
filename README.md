@@ -1,24 +1,24 @@
-# README
+# Challenge APP
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este repositório foi criado para um desafio técnico e pode ser utilizado para futuras referências.
 
-Things you may want to cover:
+## Instalação e Configuração
 
-* Ruby version
+Requisitos e recomendação para o projeto
 
-* System dependencies
+* Docker e Docker Compose
+* Sistema Linux (Qualquer distro)
 
-* Configuration
+### Rodando o projeto
 
-* Database creation
+```bash
+$ docker compose up -d
+```
 
-* Database initialization
+Isso irá inicializar os containers
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* api: backend em rails formato API RESTful
+* client: frontend em vue 3
+* database: banco de dados com postgresql
+* cache: banco in-memory redis (não foi utilizado no projeto até então)
+* mail: caixa de email local (não foi utilizado no projeto até então)

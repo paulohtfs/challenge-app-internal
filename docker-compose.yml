@@ -9,7 +9,7 @@ services:
     volumes:
       - ./:/api
       - bundle_data:/bundle/vendor
-    command: tail -f /dev/null
+    #command: tail -f /dev/null
   client:
     image: client-internal
     build:
@@ -19,7 +19,7 @@ services:
       - ./client:/client
     ports:
       - "5173:5173"
-    command: tail -f /dev/null
+    #command: tail -f /dev/null
   database:
     image: postgres:16-alpine
     restart: always
@@ -36,6 +36,11 @@ services:
       - "6379:6379"
     volumes:
       - cache_data:/data
+  mail:
+    image: dockage/mailcatcher:latest
+    ports:
+      - "1025:1025"
+      - "1080:1080"
 
 volumes:
   pg_data:
