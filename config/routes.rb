@@ -11,8 +11,8 @@ Rails.application.routes.draw do
       resources :home, only: [:index]
       resources :users, only: [:index]
 
-      post '/users/:id/activate', to: 'users#activate'
-      post '/users/:id/inactivate', to: 'users#inactivate'
+      put '/users/:id/activate', to: 'users#activate'
+      put '/users/:id/inactivate', to: 'users#inactivate'
 
       post '/webhooks', to: 'webhooks#create'
     end

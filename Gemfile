@@ -65,3 +65,5 @@ group :test do
   gem "rspec-rails", "~> 8.0"
   gem "factory_bot", "~> 6.5"
 end
+
+gem "pundit", "~> 2.5"

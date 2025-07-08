@@ -8,6 +8,11 @@
                     {{ userRole(value) }}
                 </VaChip>
             </template>
+            <template #cell(actions)="{ value, rowData }">
+                <VaButton size="small" :color="activeBtn(value)" @click="activates(value, rowData)">
+                    {{ active(value) }}
+                </VaButton>
+            </template>
         </VaDataTable>
     </div>
 </template>
@@ -23,7 +28,8 @@ export default {
                 { key: "id", sortable: true, sortingOptions: ["desc", "asc"] },
                 { key: "name", sortable: true, sortingOptions: ["desc", "asc"] },
                 { key: "email", sortable: true, sortingOptions: ["desc", "asc"] },
-                { key: "role", name: "role", sortable: true, sortingOptions: ["desc", "asc"] }
+                { key: "role", name: "role", sortable: true, sortingOptions: ["desc", "asc"] },
+                { key: "active", name: "actions", sortable: false }
             ],
         };
     },
@@ -34,7 +40,6 @@ export default {
         async setUsers(params) {
             const users = await Servers.users.list(params);
             this.users = users;
-            console.log(users);
         },
         userRole(role) {
             if (role === "User::Admin") {
@@ -45,6 +50,29 @@ export default {
         },
         search(event) {
             this.setUsers({ by_whatever: event.target.value });
+        },
+        activeBtn(status) {
+            if(status === 'true') {
+                return 'info';
+            }
+
+            return 'danger';
+        },
+        active(status) {
+            if(status === 'true') {
+                return 'Active';
+            }
+
+            return 'Inactive';
+        },
+        async activates(status, user) {
+            if(status === "true") {
+                await Servers.users.inactivate(user['id']);
+            }else{
+                await Servers.users.activate(user['id']);
+            }
+
+            this.setUsers();
         },
     },
 };

@@ -13,8 +13,18 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def activate
+    authorize :users, :activate?
+
+    V1::Users::ActivateService.call(params)
+  rescue Pundit::NotAuthorizedError => error
+    render json: { message: error.message, status: 401 }
   end
 
   def inactivate
+    authorize :users, :inactivate?
+
+    V1::Users::InactivateService.call(params)
+  rescue Pundit::NotAuthorizedError => error
+    render json: { message: error.message, status: 401 }
   end
 end
