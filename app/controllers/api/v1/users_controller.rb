@@ -2,6 +2,7 @@ class Api::V1::UsersController < ApplicationController
   has_scope :by_name
   has_scope :by_role
   has_scope :by_email
+  has_scope :by_whatever
 
   has_scope :order_name
   has_scope :order_role

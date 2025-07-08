@@ -1,8 +1,9 @@
 import { AuthService } from './auth';
+import { UsersService } from './users';
 
-const api = {}
-const baseUrl = import.meta.env.API_URL;
+const api: any = {};
 
-api.auth = new AuthService();
+api.auth = new AuthService('http://localhost:3000');
+api.users = new UsersService('http://localhost:3000/api/v1');
 
 export default api;

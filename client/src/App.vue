@@ -1,10 +1,24 @@
 <template>
-  <nav>
-    <RouterLink to="/">Go to Home</RouterLink>
-    <RouterLink to="/users">Go to users</RouterLink>
-  </nav>
+  <VaSidebar>
+    <VaSidebarItem>
+      <VaSidebarItemContent>
+        <VaIcon name="dashboard" />
+        <VaSidebarItemTitle>
+          <RouterLink to="/users">Users</RouterLink>
+        </VaSidebarItemTitle>
+      </VaSidebarItemContent>
+    </VaSidebarItem>
+
+    <VaAccordion>
+      <VaSidebarItem>
+        <VaSidebarItemContent>
+          <VaIcon name="room" />
+          <VaSidebarItemTitle>
+            <RouterLink to="/login">Login</RouterLink>
+          </VaSidebarItemTitle>
+        </VaSidebarItemContent>
+      </VaSidebarItem>
+    </VaAccordion>
+  </VaSidebar>
   <RouterView />
 </template>
-
-<script lang="ts">
-</script>

@@ -1,19 +1,29 @@
 import axios from "axios";
 
 export class BaseService {
-    baseUrl: string;
+    private readonly baseUrl: string;
+    public response: any;
 
     constructor(baseUrl: string) {
         this.baseUrl = baseUrl;
     }
 
-    get(path: string, query: object = {}): any {
-        axios.get(`${this.baseUrl}/${path}`)
-             .then(response => { return response.data });
+    protected async get(path: string, query: object = {}) {
+        const options = {
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+                "Authorization": `Bearer ${sessionStorage.getItem('token')}`
+            },
+            params: query
+        };
+
+        console.log(options)
+        await axios.get(`${this.baseUrl}/${path}`, options)
+            .then(response => { this.response = response.data });
     }
 
-    post(path: string, data: object): any {
-        axios.get(`${this.baseUrl}/${path}`, data)
-             .then(response => { return response.data });
+    protected async post(path: string, data: object) {
+        await axios.post(`${this.baseUrl}/${path}`, data)
+            .then(response => { this.response = response.data });
     }
 }

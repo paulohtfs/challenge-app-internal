@@ -1,13 +1,15 @@
 import { BaseService } from './base';
 
 type SigninData = {
-    email: string;
-    password: string;
+    user: {
+        email: string,
+        password: string,
+    }
 }
 
 export class AuthService extends BaseService {
-    login(data: SigninData) {
-        const response: object = this.post("login", data);
-        sessionStorage.setItem('token', response.token);
+    async login(data: SigninData) {
+        const response = await this.post("sign_in", data);
+        sessionStorage.setItem('token', this.response.status.token);
     }
 }

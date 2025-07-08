@@ -16,6 +16,11 @@ class User < ApplicationRecord
   scope :by_name, -> name { where('name ilike ?', sanitize_sql_like(name) + '%') }
   scope :by_role, -> role { where(role: "User::#{role.camelize}") }
   scope :by_email, -> email { where('email ilike ?', sanitize_sql_like(email) + '%') }
+  scope :by_whatever, -> whatever {
+    where('email ilike ?', sanitize_sql_like(whatever) + '%')
+      .or(where('name ilike ?', sanitize_sql_like(whatever) + '%'))
+      .or(where(role: "User::#{whatever.camelize}"))
+  }
 
   scope :order_name, -> order { order(name: order) }
   scope :order_role, -> order { order(role: order) }

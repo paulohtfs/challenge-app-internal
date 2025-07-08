@@ -6,6 +6,8 @@ class Api::V1::Users::SessionsController < Devise::SessionsController
   private
 
   def respond_with(resource, _opt = {})
+    Rails.logger.info("respond_with")
+    Rails.logger.info(params)
     @token = request.env['warden-jwt_auth.token']
     headers['Authorization'] = @token
 
